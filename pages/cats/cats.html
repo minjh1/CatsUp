@@ -8,20 +8,25 @@
 
 <ion-content class="outer-content">
   <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+  <ion-fab right bottom>
+    <button ion-fab color="AmberCat" (click)="openAddCatPage()">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
   <ion-list>
     <button ion-item *ngFor="let cat of cats" (click)="openDetailPage(cat)">
       <ion-avatar item-left>
         <img style="height: 4.6rem; width: 4.6rem;" src="{{cat.avatar}}">
       </ion-avatar>
-      <span class="mainName">{{cat.name}} </span><span class="subName">{{cat.name2}}, {{cat.name3}}</span><br>
+      <span class="mainName">{{cat.names[0]}} </span><span class="subName">{{cat.names[1]}}</span><span *ngIf="cat.nameCount>2" class="subName">, {{cat.names[2]}}</span><br>
       <span class="habitat">{{cat.habitat}} /</span><span class="info"> {{cat.info1}}</span>
       <div item-right>
         <ion-icon name="people" color="LightGrayCat"></ion-icon>
-        <span class="people">25</span>
+        <span class="people">{{cat.connection}}</span>
       </div>
     </button>
   </ion-list>
-  
+
   <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
     <ion-infinite-scroll-content></ion-infinite-scroll-content>
   </ion-infinite-scroll>

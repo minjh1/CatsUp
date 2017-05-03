@@ -10,10 +10,13 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { MyPage } from '../pages/mypage/mypage';
 import { CatsPage } from '../pages/cats/cats';
 import { CatProfilePage } from '../pages/cats/detail/detail';
+import { AddCat } from '../pages/cats/add-cat/add-cat';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { HttpModule } from "@angular/http";
+
+//import { Cat } from '../models/cat';
 
 @NgModule({
   declarations: [
@@ -25,6 +28,7 @@ import { HttpModule } from "@angular/http";
     MyPage,
     CatsPage,
     CatProfilePage,
+    AddCat,
   ],
   imports: [
     BrowserModule,
@@ -41,6 +45,7 @@ import { HttpModule } from "@angular/http";
     MyPage,
     CatsPage,
     CatProfilePage,
+    AddCat,
   ],
   providers: [
     StatusBar,
