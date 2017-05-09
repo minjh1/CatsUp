@@ -11,6 +11,7 @@ import { MyPage } from '../pages/mypage/mypage';
 import { CatsPage } from '../pages/cats/cats';
 import { CatProfilePage } from '../pages/cats/detail/detail';
 import { AddCat } from '../pages/cats/add-cat/add-cat';
+import { ReplyPage } from '../pages/reply/reply';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -29,6 +30,7 @@ import { HttpModule } from "@angular/http";
     CatsPage,
     CatProfilePage,
     AddCat,
+    ReplyPage,
   ],
   imports: [
     BrowserModule,
@@ -46,6 +48,7 @@ import { HttpModule } from "@angular/http";
     CatsPage,
     CatProfilePage,
     AddCat,
+    ReplyPage,
   ],
   providers: [
     StatusBar,
