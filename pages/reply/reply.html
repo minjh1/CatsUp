@@ -17,3 +17,14 @@
     </button>
   </ion-list>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-input [(ngModel)]="reply_text" type="text" placeholder="댓글 쓰기" (input)="colorChange()"></ion-input>
+    <ion-buttons end>
+      <button ion-button icon-only [color]="iconColor">
+        <ion-icon name="send"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

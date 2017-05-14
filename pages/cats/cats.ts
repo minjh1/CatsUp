@@ -38,8 +38,10 @@ export class CatsPage {
     this.http.post(this.serverURL+'/getCatList', JSON.stringify(body), { headers: headers })
       .map(res => res.json())
       .subscribe(data => {
-        for (let i = body.offset; i < body.limit; i++) {
-          this.cats.push(new Cat(data[i].cat_seq, this.serverURL + data[i].avatar, data[i].nameCount, data[i].nameArray, data[i].countArray, data[i].sex, data[i].habitat, data[i].info1, data[i].info2, data[i].info3, data[i].create_date, data[i].connection));
+        for (let i =0; i < data.length; i++) {
+          this.cats.push(new Cat(data[i].cat_seq, this.serverURL + data[i].avatar, data[i].nameCount, data[i].nameArray,
+            data[i].countArray, data[i].sex, data[i].habitat, data[i].info1, data[i].info2, data[i].info3,
+            data[i].create_date, data[i].connection));
         }
       }, error => {
         console.log(JSON.stringify(error.json()));

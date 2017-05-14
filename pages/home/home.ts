@@ -2,21 +2,47 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { Feed } from '../../models/feed';
 import { ReplyPage } from '../reply/reply';
+import { Http, Headers } from '@angular/http';
+import 'rxjs/add/operator/map';
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
-  feeds : Feed[] = [];
-  constructor(public navCtrl: NavController) {
-    this.feeds.push(new Feed("assets/img/bob.png","assets/img/james.jpg","Bob","James","1시간 전","High-five!",5));
-    this.feeds.push(new Feed("assets/img/cat1.png","assets/img/james.jpg","까치","유저1","2시간 전","Wait a minute. Wait a minute, Doc. Uhhh... Are you telling me that you built a time machine... out of a DeLorean?! Whoa. This is heavy.", 7));
+  feeds: Feed[] = [];
+  serverURL: string = 'http://45.249.160.73:5555';
+
+  constructor(public navCtrl: NavController, private http: Http) {
+    console.log("home");
+    this.getFeeds(0, 6);
+  }
+
+  getFeeds(offset: number, limit: number) {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    let body = {
+      limit: limit,
+      offset: offset,
     }
 
-  openReplyPage(feed){
+    this.http.post(this.serverURL + '/getFeeds', JSON.stringify(body), { headers: headers })
+      .map(res => res.json())
+      .subscribe(data => {
+        for (let i = 0; i < data.length; i++) {
+          this.feeds.push(new Feed(data[i].wr_seq, data[i].type, data[i].cat_seq, this.serverURL+data[i].catImg, data[i].catName,
+            data[i].user_seq, this.serverURL+data[i].userImg, data[i].userName, data[i].imgUrl, data[i].content, data[i].create_date,
+            data[i].likeCount, data[i].replyCount));
+        }
+      }, error => {
+        console.log(JSON.stringify(error.json()));
+      })
+  }
+
+  openReplyPage(replyType, seq) {
     this.navCtrl.push(ReplyPage, {
-      feed: feed,
+      replyType: replyType,
+      seq: seq
     });
   }
 }

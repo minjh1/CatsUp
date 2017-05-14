@@ -35,7 +35,9 @@ import { HttpModule } from "@angular/http";
   imports: [
     BrowserModule,
     HttpModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp, {
+      tabsHideOnSubPages: true,
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [
