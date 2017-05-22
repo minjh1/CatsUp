@@ -12,10 +12,16 @@ import { CatsPage } from '../pages/cats/cats';
 import { CatProfilePage } from '../pages/cats/detail/detail';
 import { AddCat } from '../pages/cats/add-cat/add-cat';
 import { ReplyPage } from '../pages/reply/reply';
+import { TutorialPage } from '../pages/tutorial/tutorial';
+import { LoginPage } from '../pages/login/login';
+import { SignUpPage } from '../pages/signup/signup';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { HttpModule } from "@angular/http";
+import { IonicStorageModule } from '@ionic/storage';
+
+import { UserData } from '../providers/user-data';
 
 //import { Cat } from '../models/cat';
 
@@ -31,13 +37,17 @@ import { HttpModule } from "@angular/http";
     CatProfilePage,
     AddCat,
     ReplyPage,
+    TutorialPage,
+    LoginPage,
+    SignUpPage,
   ],
   imports: [
     BrowserModule,
     HttpModule,
     IonicModule.forRoot(MyApp, {
       tabsHideOnSubPages: true,
-    })
+    }),
+    IonicStorageModule.forRoot(),
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -51,10 +61,14 @@ import { HttpModule } from "@angular/http";
     CatProfilePage,
     AddCat,
     ReplyPage,
+    TutorialPage,
+    LoginPage,
+    SignUpPage,
   ],
   providers: [
     StatusBar,
     SplashScreen,
+    UserData,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
